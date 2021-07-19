@@ -3,7 +3,7 @@ import {useDispatch} from 'react-redux';
 import {TiArrowUpOutline, TiArrowDownOutline, TiArrowUpThick, TiArrowDownThick, TiMessage} from 'react-icons/ti';
 import Skeleton from 'react-loading-skeleton';
 import Comment from '../Comment/Comment';
-import Card from '../../components/Card';
+import Card from '../../components/Card/Card';
 import moment from 'moment';
 import {useGetCommentsQuery} from '../../api/redditAPI';
 import Avatar from '../Avatar/Avatar';
