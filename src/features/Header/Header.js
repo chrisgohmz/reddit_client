@@ -3,6 +3,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import {selectSearchTerm, setSearchTerm} from '../../store/redditSlice';
 import {IoLogoReddit} from 'react-icons/io';
 import {GoSearch} from 'react-icons/go';
+import './Header.css';
 
 const Header = () => {
     const [searchTermLocal, setSearchTermLocal] = useState('');
@@ -28,7 +29,7 @@ const Header = () => {
           <div className="logo">
             <IoLogoReddit className="logo-icon"></IoLogoReddit>
             <p>
-              Reddit<span>Minimal</span>
+              Reddit<span>Mini</span>
             </p>
           </div>
           <form className="search" onSubmit={onSearchTermSubmit}>

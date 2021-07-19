@@ -9,6 +9,7 @@ import {useGetCommentsQuery} from '../../api/redditAPI';
 import Avatar from '../Avatar/Avatar';
 import {setComments, toggleShowingComments} from '../../store/redditSlice';
 import shortenNumber from '../../utils/shortenNumber';
+import './Post.css';
 
 const Post = ({post, index}) => {
 

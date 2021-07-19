@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import {selectCurrentSubreddit, selectSearchTerm, setPosts} from '../../store/redditSlice';
 import {useGetPostsQuery} from '../../api/redditAPI';
 import Post from '../Post/Post';
+import './Home.css';
  
 const Home = () => {
     const reddit = useSelector(selectCurrentSubreddit);

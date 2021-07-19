@@ -1,12 +1,12 @@
 import React from 'react';
 import { useSelector, useDispatch } from "react-redux";
 import Card from "../../components/Card/Card";
-import {setSubreddits, selectSubreddits} from '../../store/subredditsSlice';
+import {setSubreddits} from '../../store/subredditsSlice';
 import {selectCurrentSubreddit, setCurrentSubreddit} from '../../store/redditSlice';
 import {useGetSubredditsQuery} from '../../api/redditAPI';
+import './Subreddits.css';
 
 const Subreddits = () => {
-    const subreddits = useSelector(selectSubreddits);
     const dispatch = useDispatch();
     const currentSubreddit = useSelector(selectCurrentSubreddit);
 
@@ -26,7 +26,7 @@ const Subreddits = () => {
         <Card className="subreddit-card">
             <h2>Subreddits</h2>
             <ul className="subreddits-list">
-                {subreddits.map(subreddit => (
+                {data.map(subreddit => (
                     <li
                     key={subreddit.id}
                     className={`${currentSubreddit === subreddit.url && `selected-subreddit`}`}>
