@@ -1,6 +1,6 @@
 import React, {useState, useEffect} from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import {selectSearchTerm, setSearchTerm} from '../Subreddits/redditSlice';
+import {selectSearchTerm, setSearchTerm} from '../../store/redditSlice';
 import {IoLogoReddit} from 'react-icons/io';
 import {GoSearch} from 'react-icons/go';
 

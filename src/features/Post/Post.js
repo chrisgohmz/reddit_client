@@ -7,7 +7,7 @@ import Card from '../../components/Card';
 import moment from 'moment';
 import {useGetCommentsQuery} from '../../api/redditAPI';
 import Avatar from '../Avatar/Avatar';
-import {setComments, toggleShowingComments} from '../Home/redditSlice';
+import {setComments, toggleShowingComments} from '../../store/redditSlice';
 import shortenNumber from '../../utils/shortenNumber';
 
 const Post = ({post, index}) => {
