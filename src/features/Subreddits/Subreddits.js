@@ -1,14 +1,13 @@
 import React from 'react';
 import { useSelector, useDispatch } from "react-redux";
 import Card from "../../components/Card/Card";
-import {setSubreddits} from '../../store/subredditsSlice';
 import {selectCurrentSubreddit, setCurrentSubreddit} from '../../store/redditSlice';
 import {useGetSubredditsQuery} from '../../api/redditAPI';
 import './Subreddits.css';
 
 const Subreddits = () => {
-    const dispatch = useDispatch();
     const currentSubreddit = useSelector(selectCurrentSubreddit);
+    const dispatch = useDispatch();
 
     const {data, error, isLoading} = useGetSubredditsQuery();
 
@@ -19,8 +18,6 @@ const Subreddits = () => {
     if (isLoading) {
         return <h2>Loading subreddits...</h2>;
     };
-
-    dispatch(setSubreddits(data));
 
     return (
         <Card className="subreddit-card">

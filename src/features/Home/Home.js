@@ -24,7 +24,7 @@ const Home = () => {
         )
     };
 
-    const filteredPosts = searchTerm !== '' ? data.filter(post => post.title.toLowerCase().includes(searchTerm.toLowerCase())) : data;
+    let filteredPosts = searchTerm !== '' ? data.filter(post => post.title.toLowerCase().includes(searchTerm.toLowerCase())) : data;
 
     if (filteredPosts.length === 0) {
         return (
@@ -34,11 +34,13 @@ const Home = () => {
         );
     }
 
-    dispatch(setPosts(filteredPosts.map(post => ({
+    filteredPosts = filteredPosts.map(post => ({
         ...post,
         showingComments: false,
         comments: []
-    }))));
+    }));
+
+    dispatch(setPosts(filteredPosts));
 
     return (
         <div>

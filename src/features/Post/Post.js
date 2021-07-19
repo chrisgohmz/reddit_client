@@ -11,15 +11,15 @@ import {setComments, toggleShowingComments} from '../../store/redditSlice';
 import shortenNumber from '../../utils/shortenNumber';
 import './Post.css';
 
-const Post = ({post, index}) => {
+const Post = ({key, post, index}) => {
 
     const [voteValue, setVoteValue] = useState(0);
     const dispatch = useDispatch();
 
-    const {data, error, isLoading} = useGetCommentsQuery(index);
+    const {data, error, isLoading} = useGetCommentsQuery(post.permalink);
 
-    const onToggleComments = (index) => {
-      dispatch(setComments({index, comments: data}));
+    const onToggleComments = index => {
+      dispatch(setComments({index: index, comments: data}));
       dispatch(toggleShowingComments(index));
     };
 
@@ -138,7 +138,7 @@ const Post = ({post, index}) => {
                     className={`icon-action-button ${
                       post.showingComments && 'showing-comments'
                     }`}
-                    onClick={() => onToggleComments(post.permalink)}
+                    onClick={() => onToggleComments(index)}
                     aria-label="Show comments"
                   >
                     <TiMessage className="icon-action" />
