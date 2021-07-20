@@ -6,7 +6,7 @@ import Subreddits from './features/Subreddits/Subreddits';
 
 function App() {
   return (
-    <div className="App">
+    <>
       <header>
       <Header></Header>
       </header>
@@ -16,7 +16,7 @@ function App() {
       <aside>
         <Subreddits></Subreddits>
       </aside>
-    </div>
+    </>
   );
 }
 

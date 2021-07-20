@@ -1,25 +1,21 @@
 import React, {useState} from 'react';
-import {useDispatch} from 'react-redux';
+import {useDispatch, useSelector} from 'react-redux';
 import {TiArrowUpOutline, TiArrowDownOutline, TiArrowUpThick, TiArrowDownThick, TiMessage} from 'react-icons/ti';
-import Skeleton from 'react-loading-skeleton';
-import Comment from '../Comment/Comment';
+import Comments from '../Comments/Comments';
 import Card from '../../components/Card/Card';
 import moment from 'moment';
-import {useGetCommentsQuery} from '../../api/redditAPI';
 import Avatar from '../Avatar/Avatar';
-import {setComments, toggleShowingComments} from '../../store/redditSlice';
+import {toggleShowingComments} from '../../store/redditSlice';
 import shortenNumber from '../../utils/shortenNumber';
 import './Post.css';
 
-const Post = ({key, post, index}) => {
+const Post = ({post, index}) => {
 
     const [voteValue, setVoteValue] = useState(0);
+    const showingComments = useSelector(state => state.reddit.posts[index].showingComments);
     const dispatch = useDispatch();
 
-    const {data, error, isLoading} = useGetCommentsQuery(post.permalink);
-
     const onToggleComments = index => {
-      dispatch(setComments({index: index, comments: data}));
       dispatch(toggleShowingComments(index));
     };
 
@@ -35,16 +31,16 @@ const Post = ({key, post, index}) => {
 
     const renderUpvote = () => {
       if (voteValue === 1) {
-          return <TiArrowUpThick></TiArrowUpThick>;
+          return <TiArrowUpThick className="icon-action"></TiArrowUpThick>;
       }
-      return <TiArrowUpOutline></TiArrowUpOutline>;
+      return <TiArrowUpOutline className="icon-action"></TiArrowUpOutline>;
     };
 
     const renderDownvote = () => {
       if (voteValue === -1) {
-          return <TiArrowDownThick></TiArrowDownThick>;
+          return <TiArrowDownThick className="icon-action"></TiArrowDownThick>;
       }
-      return <TiArrowDownOutline></TiArrowDownOutline>;
+      return <TiArrowDownOutline className="icon-action"></TiArrowDownOutline>;
     };
 
     const getVoteType = () => {
@@ -58,31 +54,10 @@ const Post = ({key, post, index}) => {
     };
 
     const renderComments = () => {
-      if (error) {
+      if (showingComments) {
         return (
           <div>
-            <h3>Error loading comments</h3>
-          </div>
-        );
-      }
-  
-      if (isLoading) {
-        return (
-          <div>
-            <Skeleton />
-            <Skeleton />
-            <Skeleton />
-            <Skeleton />
-          </div>
-        );
-      }
-  
-      if (post.showingComments) {
-        return (
-          <div>
-            {post.comments.map((comment) => (
-              <Comment comment={comment} key={comment.id} />
-            ))}
+            <Comments permalink={post.permalink}></Comments>
           </div>
         );
       }
@@ -136,7 +111,7 @@ const Post = ({key, post, index}) => {
                   <button
                     type="button"
                     className={`icon-action-button ${
-                      post.showingComments && 'showing-comments'
+                      showingComments && 'showing-comments'
                     }`}
                     onClick={() => onToggleComments(index)}
                     aria-label="Show comments"

@@ -1,9 +1,12 @@
 import React from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import {selectCurrentSubreddit, selectSearchTerm, setPosts} from '../../store/redditSlice';
+import { useSelector, useDispatch } from 'react-redux';
+import {setPosts, selectCurrentSubreddit, selectSearchTerm} from '../../store/redditSlice';
 import {useGetPostsQuery} from '../../api/redditAPI';
 import Post from '../Post/Post';
 import './Home.css';
+import {AnimatedList} from 'react-animated-list';
+import getRandomNumber from '../../utils/getRandomNumber';
+import PostLoading from '../Post/PostLoading';
  
 const Home = () => {
     const reddit = useSelector(selectCurrentSubreddit);
@@ -13,7 +16,11 @@ const Home = () => {
     const {data, error, isLoading} = useGetPostsQuery(reddit);
 
     if (isLoading) {
-        return <h2>Posts Loading</h2>
+        return (
+            <AnimatedList animation="zoom">
+              {Array(getRandomNumber(3, 10)).fill(<PostLoading />)}
+            </AnimatedList>
+        );
     };
 
     if (error) {
@@ -26,6 +33,8 @@ const Home = () => {
 
     let filteredPosts = searchTerm !== '' ? data.filter(post => post.title.toLowerCase().includes(searchTerm.toLowerCase())) : data;
 
+    dispatch(setPosts(filteredPosts));
+
     if (filteredPosts.length === 0) {
         return (
             <div className="error">
@@ -34,13 +43,6 @@ const Home = () => {
         );
     }
 
-    filteredPosts = filteredPosts.map(post => ({
-        ...post,
-        showingComments: false,
-        comments: []
-    }));
-
-    dispatch(setPosts(filteredPosts));
 
     return (
         <div>

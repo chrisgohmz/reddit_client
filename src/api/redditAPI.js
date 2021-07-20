@@ -10,7 +10,7 @@ export const redditApi = createApi({
         }),
         getPosts: builder.query({
             query: (subreddit) => `${subreddit}.json`,
-            transformResponse: response => response.data.children.map(subreddit => subreddit.data)
+            transformResponse: response => response.data.children.map(subreddit => ({...subreddit.data, showingComments: false}))
         }),
         getComments: builder.query({
             query: (permalink) => `${permalink}.json`,
