@@ -1,4 +1,9 @@
 import {createApi, fetchBaseQuery} from '@reduxjs/toolkit/query/react';
+import fetch from 'node-fetch';
+
+if(!global.globalThis.fetch) {
+    global.globalThis.fetch = fetch;
+};
 
 export const redditApi = createApi({
     reducerPath: 'redditApi',

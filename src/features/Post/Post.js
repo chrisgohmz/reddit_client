@@ -5,7 +5,7 @@ import Comments from '../Comments/Comments';
 import Card from '../../components/Card/Card';
 import moment from 'moment';
 import Avatar from '../Avatar/Avatar';
-import {toggleShowingComments} from '../../store/redditSlice';
+import {toggleShowingComments} from '../../store/redditSlice.js';
 import shortenNumber from '../../utils/shortenNumber';
 import './Post.css';
 

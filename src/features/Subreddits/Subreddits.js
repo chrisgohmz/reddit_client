@@ -1,7 +1,7 @@
 import React from 'react';
-import { useSelector, useDispatch } from "react-redux";
+import {useSelector, useDispatch} from "react-redux";
 import Card from "../../components/Card/Card";
-import {selectCurrentSubreddit, setCurrentSubreddit} from '../../store/redditSlice';
+import {selectCurrentSubreddit, setCurrentSubreddit} from '../../store/redditSlice.js';
 import {useGetSubredditsQuery} from '../../api/redditAPI';
 import './Subreddits.css';
 

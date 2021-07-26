@@ -1,13 +1,23 @@
 {
   "name": "reddit_client",
+  "type": "module",
+  "jest": {
+    "transform": {
+      "^.+\\.jsx?$": "babel-jest",
+      "^.+\\.css$": "jest-transform-css"
+    }
+  },
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@babel/runtime": "^7.14.8",
     "@reduxjs/toolkit": "^1.6.0",
     "@testing-library/jest-dom": "^4.2.4",
-    "@testing-library/react": "^9.5.0",
     "@testing-library/user-event": "^7.2.1",
+    "esm": "^3.2.25",
+    "jest-transform-css": "^2.1.0",
     "moment": "^2.29.1",
+    "node-fetch": "^2.6.1",
     "react": "^17.0.2",
     "react-animated-list": "^0.1.4",
     "react-dom": "^17.0.2",
@@ -20,7 +30,8 @@
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
-    "test": "react-scripts test",
+    "test": "jest",
+    "test:watch": "npm test -- --watch",
     "eject": "react-scripts eject"
   },
   "eslintConfig": {
@@ -37,5 +48,15 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "devDependencies": {
+    "@babel/plugin-transform-runtime": "^7.14.5",
+    "@babel/preset-env": "^7.14.8",
+    "@babel/preset-react": "^7.14.5",
+    "@testing-library/react": "^9.5.0",
+    "babel-plugin-transform-runtime": "^6.23.0",
+    "jest-fetch-mock": "^3.0.3",
+    "msw": "^0.32.2",
+    "redux-testkit": "^1.0.6"
   }
 }

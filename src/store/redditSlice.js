@@ -1,11 +1,11 @@
-import { createSlice } from "@reduxjs/toolkit";
+import {createSlice} from "@reduxjs/toolkit";
 
 const redditSlice = createSlice({
     name: 'reddit',
     initialState: {
         posts: [],
         searchTerm: '',
-        currentSubreddit: '/r/Home',
+        currentSubreddit: '/r/Home'
     },
     reducers: {
         setPosts: (state, action) => {
@@ -20,16 +20,12 @@ const redditSlice = createSlice({
         },
         toggleShowingComments: (state, action) => {
             state.posts[action.payload].showingComments = !state.posts[action.payload].showingComments;
-        },
-        setPostComments: (state, action) => {
-            state.postComments = action.payload;
         }
     }
 });
 
 export const selectSearchTerm = state => state.reddit.searchTerm;
 export const selectCurrentSubreddit = state => state.reddit.currentSubreddit;
-export const selectPosts = state => state.reddit.posts;
 
-export const {setPosts, setSearchTerm, setCurrentSubreddit, toggleShowingComments, setPostComments} = redditSlice.actions;
+export const {setPosts, setSearchTerm, setCurrentSubreddit, toggleShowingComments} = redditSlice.actions;
 export default redditSlice.reducer;

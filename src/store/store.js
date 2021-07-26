@@ -1,15 +1,14 @@
 import { configureStore } from '@reduxjs/toolkit';
 import {setupListeners} from '@reduxjs/toolkit/query';
 import {redditApi} from '../api/redditAPI';
-import redditSlice from './redditSlice';
+import redditReducer from './redditSlice';
 
 export const store = configureStore({
   reducer: {
     [redditApi.reducerPath]: redditApi.reducer,
-    reddit: redditSlice,
+    reddit: redditReducer,
   },
-  middleware: (getDefaultMiddleware) => 
-    getDefaultMiddleware().concat(redditApi.middleware),
+  middleware: (getDefaultMiddleware) => getDefaultMiddleware().concat(redditApi.middleware)
 });
 
 setupListeners(store.dispatch);

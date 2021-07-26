@@ -1,10 +1,10 @@
+import {AnimatedList} from 'react-animated-list';
 import React from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import {setPosts, selectCurrentSubreddit, selectSearchTerm} from '../../store/redditSlice';
+import {setPosts, selectCurrentSubreddit, selectSearchTerm} from '../../store/redditSlice.js';
 import {useGetPostsQuery} from '../../api/redditAPI';
 import Post from '../Post/Post';
 import './Home.css';
-import {AnimatedList} from 'react-animated-list';
 import getRandomNumber from '../../utils/getRandomNumber';
 import PostLoading from '../Post/PostLoading';
  
